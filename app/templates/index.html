@@ -1,29 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Team Cards</title>
-    <link rel="stylesheet" href="/static/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PP Cards</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="container">
-        <h1 class="page-title">Participants</h1>
-        <section class="cards-grid">
-            {% for card in cards %}
-            <article class="card">
-                <div class="card-content">
-                    <h2 class="card-title">{{ card.name }}</h2>
-                    <p class="card-desc">{{ card.description }}</p>
-                </div>
-            </article>
-            {% endfor %}
-        </section>
-    </main>
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="/" class="logo">PP Board</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="https://www.instagram.com/pp_peepee_pp/#">My Instagram</a></li>
+        <li><a href="/">About</a></li>
+      </ul>
+
+      <!-- Theme toggle -->
+      <button id="theme-toggle"
+              class="theme-toggle"
+              type="button"
+              aria-label="Toggle dark mode"
+              aria-pressed="false">
+        <!-- sun -->
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.45 14.32l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM12 4V1h-0v3h0zm0 19v-3h0v3h0zM4 12H1v0h3v0zm19 0h-3v0h3v0zM6.76 19.16l-1.42 1.42-1.79-1.8 1.41-1.41 1.8 1.79zM19.16 6.76l1.41-1.41-1.79-1.8-1.41 1.41 1.79 1.8zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
+        </svg>
+        <!-- moon -->
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M20.354 15.354A8.001 8.001 0 0110.646 3.646 9 9 0 1020.354 15.354z"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Participants</h1>
+    <section class="cards-grid">
+      {% for card in cards %}
+      <article class="card">
+        {% if card.image %}
+        <div class="card-image">
+          <img src="{{ card.image }}" alt="{{ card.name }}">
+        </div>
+        {% endif %}
+        <div class="card-content">
+          <h2 class="card-title">{{ card.name }}</h2>
+          <p class="card-desc">{{ card.description }}</p>
+          {% if card.role %}
+          <p class="card-role">{{ card.role }}</p>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ year }} PP Board. All rights reserved.</p>
+  </footer>
+
+  <script src="/static/theme.js" defer></script>
 </body>
 </html>
-
-
